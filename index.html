@@ -1,56 +1,47 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- SEO TITLE + DESCRIPTION -->
-<title>IGNOU Help Portal 2026 | Free Grade Card, Percentage Calculator & Assignment PDF</title>
+<title>IGNOU Help Portal 2026 | Free Grade Card, Percentage Calculator & Solved Assignments</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Free IGNOU Help Portal 2026. Calculate Assignment 30% + TEE 70%, Download Grade Card PDF, Get Assignment Question Papers, Result & Important IGNOU Links for BA, BCA, BCom, MA, MCA.">
-<meta name="keywords" content="IGNOU, IGNOU Calculator, IGNOU Grade Card, IGNOU Result, IGNOU Assignment, IGNOU Percentage Calculator">
+<meta name="description" content="Free IGNOU Help Portal 2026. Calculate Assignment 30% + TEE 70%, Download Grade Card PDF, Get Solved Assignments, Assignment Status, Result & Important IGNOU Links.">
+<meta name="keywords" content="IGNOU, IGNOU Calculator, IGNOU Solved Assignment, GullyBaba, Neeraj Books, IGNOU Assignment">
 <link rel="icon" href="https://upload.wikimedia.org/wikipedia/en/thumb/1/15/IGNOU_logo.svg/1200px-IGNOU_logo.svg.png" type="image/png">
 
 <style>
     body {font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background: #f5f5f5;}
-
-    /* TOP PE IGNOU LOGO */
     header {background: #004080; color: white; text-align: center; padding: 15px 10px;}
-    header.logo {display: flex; align-items: center; justify-content: center; gap: 10px;}
+   .logo {display: flex; align-items: center; justify-content: center; gap: 10px;}
     header img {width: 50px; height: 50px; background: white; border-radius: 50%; padding: 5px;}
     header h1 {margin: 0; font-size: 24px;}
     header p {margin: 5px 0 0; font-size: 14px;}
-
    .container {max-width: 1100px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
     nav {text-align: center; padding: 10px; background: #e6f0ff; position: sticky; top: 0; z-index: 10;}
     nav a {margin: 0 10px; text-decoration: none; color: #004080; font-weight: bold;}
-
-    /* TABLE IN GOOD FORMAT */
    .table-container {overflow-x: auto; border-radius: 8px; border: 1px solid #ddd;}
     table {border-collapse: collapse; width: 100%; table-layout: fixed;}
     th {background: #004080; color: white; padding: 12px 8px; font-size: 14px;}
     td {padding: 8px; text-align: center; border-bottom: 1px solid #eee;}
-    tr:nth-child(even) {background: #f9f9f9;} /* zebra strip */
+    tr:nth-child(even) {background: #f9f9f9;}
     input {width: 90px; padding: 6px; max-width: 100%; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; text-align: center;}
     input:focus {border-color: #004080; outline: none;}
-
     button {padding: 10px 15px; margin: 5px; border: none; background: #004080; color: white; border-radius: 5px; cursor: pointer; font-weight: bold;}
     button:hover {background: #0066cc;}
-    button.green {background: #28a745;} /* PDF button */
-    button.green:hover {background: #218838;}
-
+    button.green {background: #28a745;} button.green:hover {background: #218838;}
+    button.orange {background: #ff6600;} button.orange:hover {background: #e65c00;}
     footer {background: #222; color: white; text-align: center; padding: 15px; margin-top: 20px; font-size: 12px;}
     #gradeResult {margin-top: 15px; padding: 15px; background: #e6ffe6; border-left: 4px solid green; border-radius: 5px;}
-
-    /* ASSIGNMENT SECTION */
-   .assignment-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;}
-   .course-card {border: 1px solid #ddd; padding: 15px; border-radius: 8px; background: #fafafa;}
-   .course-card h4 {margin: 0 0 10px; color: #004080;}
-
+   .assignment-box {text-align: center; padding: 20px; border: 2px dashed #004080; border-radius: 8px; background: #f0f8ff; margin-bottom: 20px;}
+   .assignment-box a {display: inline-block; margin: 10px; padding: 12px 20px; background: #004080; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;}
+   .assignment-box a:hover {background: #0066cc;}
+   .solved-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-top: 15px;}
+   .solved-card {border: 1px solid #ddd; padding: 15px; border-radius: 8px; background: #fff8e6; text-align: left;}
+   .solved-card h4 {margin: 0 0 10px; color: #ff6600;}
+   .solved-card a {display: block; margin: 5px 0; color: #004080; text-decoration: none;}
+   .solved-card a:hover {text-decoration: underline;}
     @media (max-width: 768px) {
-      input {width: 70px;}
-      th, td {font-size: 12px; padding: 6px;}
-      header h1 {font-size: 20px;}
+      input {width: 70px;} th, td {font-size: 12px; padding: 6px;} header h1 {font-size: 20px;}
     }
 </style>
-<!-- PDF LIBRARY -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 
@@ -58,11 +49,10 @@
 
 <header>
     <div class="logo">
-        <!-- IGNOU LOGO -->
         <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/15/IGNOU_logo.svg/1200px-IGNOU_logo.svg.png" alt="IGNOU Logo">
         <div>
             <h1>🎓 IGNOU Help Portal</h1>
-            <p>Assignment + TEE Calculator | Assignment Papers | Important Links</p>
+            <p>Assignment + TEE Calculator | Solved Assignments | Important Links</p>
         </div>
     </div>
 </header>
@@ -96,32 +86,39 @@
 <button onclick="resetTable()">🔄 Reset</button>
 <button class="green" onclick="downloadPDF()">📄 Download PDF</button>
 
-<div id="pdfArea">
-<h3 id="gradeResult"></h3>
-</div>
+<div id="pdfArea"><h3 id="gradeResult"></h3></div>
 
 <hr>
 
-<!-- ASSIGNMENT QUESTION PAPER SECTION -->
-<h2 id="assignments">📚 Latest Assignment Question Papers 2025-26</h2>
-<p>Click karke direct PDF download karo</p>
-<div class="assignment-grid">
-    <div class="course-card">
-        <h4>BCA Assignments</h4>
-        <p><a href="https://webservices.ignou.ac.in/assignments2025-26/BCA/BCA-1st-Year.pdf" target="_blank">BCA 1st Year Download</a></p>
-        <p><a href="https://webservices.ignou.ac.in/assignments2025-26/BCA/BCA-2nd-Year.pdf" target="_blank">BCA 2nd Year Download</a></p>
+<h2 id="assignments">📚 IGNOU Assignments 2025-26</h2>
+
+<div class="assignment-box">
+    <p><b>Official Question Papers</b></p>
+    <a href="https://www.ignou.ac.in/studentService/download/assignments" target="_blank">📥 View All Assignments</a>
+
+    <p style="margin-top:20px;"><b>Check Submission Status</b></p>
+    <a href="https://isms.ignou.ac.in/changeadmdata/StatusAssignment.asp" target="_blank">📝 Assignment Submission Status</a>
+</div>
+
+<h3>📖 Solved Assignments - GullyBaba & Neeraj</h3>
+<p><small>Note: Ye external sellers ke link hain. Waha se PDF kharid kar download kar sakte ho</small></p>
+
+<div class="solved-grid">
+    <div class="solved-card">
+        <h4>📘 GullyBaba.com</h4>
+        <a href="https://www.gullybaba.com/" target="_blank">GullyBaba Homepage</a>
+        <a href="https://www.gullybaba.com/search?type=product&q=IGNOU+Solved+Assignment" target="_blank">Search: IGNOU Solved Assignment</a>
+        <a href="https://www.gullybaba.com/search?type=product&q=BCA" target="_blank">Search: BCA Solved</a>
+        <a href="https://www.gullybaba.com/search?type=product&q=BA" target="_blank">Search: BA Solved</a>
+        <a href="https://www.gullybaba.com/search?type=product&q=BCom" target="_blank">Search: BCom Solved</a>
     </div>
-    <div class="course-card">
-        <h4>BA Assignments</h4>
-        <p><a href="https://webservices.ignou.ac.in/assignments2025-26/BA/BA-1st-Year.pdf" target="_blank">BA 1st Year Download</a></p>
-    </div>
-    <div class="course-card">
-        <h4>BCom Assignments</h4>
-        <p><a href="https://webservices.ignou.ac.in/assignments2025-26/BCom/BCom-1st-Year.pdf" target="_blank">BCom 1st Year Download</a></p>
-    </div>
-    <div class="course-card">
-        <h4>All Courses</h4>
-        <p><a href="https://www.ignou.ac.in/studentService/download/assignments" target="_blank">View All Assignments</a></p>
+    <div class="solved-card">
+        <h4>📗 NeerajBooks.com</h4>
+        <a href="https://neerajbooks.com/" target="_blank">Neeraj Books Homepage</a>
+        <a href="https://neerajbooks.com/search?q=IGNOU+Solved+Assignment" target="_blank">Search: IGNOU Solved Assignment</a>
+        <a href="https://neerajbooks.com/search?q=BCA" target="_blank">Search: BCA Solved</a>
+        <a href="https://neerajbooks.com/search?q=BA" target="_blank">Search: BA Solved</a>
+        <a href="https://neerajbooks.com/search?q=BCom" target="_blank">Search: BCom Solved</a>
     </div>
 </div>
 
@@ -134,7 +131,7 @@
 <p><a href="https://gradecard.ignou.ac.in/" target="_blank">📋 Grade Card</a></p>
 
 <br>
-<button onclick="shareResult()">📤 Share Result on WhatsApp</button>
+<button class="orange" onclick="shareResult()">📤 Share Result on WhatsApp</button>
 
 <hr>
 <h2 id="about">👨‍💻 About IGNOU Help Portal</h2>
@@ -144,81 +141,35 @@
 
 <footer>
 <p>© 2026 IGNOU Help Portal | Made with ❤️ for IGNOU Students</p>
-<p><small>Note: This is an unofficial tool. For official info visit ignou.ac.in</small></p>
+<p><small>Disclaimer: Solved assignment links are external. We are not affiliated with GullyBaba or Neeraj.</small></p>
 </footer>
 
 <script>
 function createRow() {
     let table = document.getElementById("gradeTable");
     let row = table.insertRow(-1);
-    row.innerHTML = `
-    <td><input type="text" class="course" placeholder="BCS-011"></td>
-    <td><input type="number" class="assignmentMarks" min="0" max="100" oninput="calcRow(this)"></td>
-    <td><input type="number" class="teeMarks" min="0" max="100" oninput="calcRow(this)"></td>
-    <td class="percentageCell">-</td>
-    `;
+    row.innerHTML = `<td><input type="text" class="course" placeholder="BCS-011"></td><td><input type="number" class="assignmentMarks" min="0" max="100" oninput="calcRow(this)"></td><td><input type="number" class="teeMarks" min="0" max="100" oninput="calcRow(this)"></td><td class="percentageCell">-</td>`;
 }
-
-document.addEventListener("DOMContentLoaded", function() {
-    for(let i=1; i<=12; i++) { createRow(); }
-});
-
+document.addEventListener("DOMContentLoaded", function() { for(let i=1; i<=12; i++) { createRow(); } });
 function addRow() { createRow(); }
-function deleteRow() {
-    let table = document.getElementById("gradeTable");
-    if(table.rows.length > 2){ table.deleteRow(-1); }
-}
-
-function calcRow(input) {
-    let row = input.parentElement.parentElement;
-    let a = Number(row.querySelector(".assignmentMarks").value);
-    let t = Number(row.querySelector(".teeMarks").value);
-    let per = (a * 0.30) + (t * 0.70);
-    row.querySelector(".percentageCell").innerText = (a > 0 || t > 0)? per.toFixed(2) + "%" : "-";
-}
-
+function deleteRow() { let table = document.getElementById("gradeTable"); if(table.rows.length > 2){ table.deleteRow(-1); } }
+function calcRow(input) { let row = input.parentElement.parentElement; let a = Number(row.querySelector(".assignmentMarks").value); let t = Number(row.querySelector(".teeMarks").value); let per = (a * 0.30) + (t * 0.70); row.querySelector(".percentageCell").innerText = (a > 0 || t > 0)? per.toFixed(2) + "%" : "-"; }
 function calculateGradeCard() {
-    let assignments = document.querySelectorAll(".assignmentMarks");
-    let tees = document.querySelectorAll(".teeMarks");
-    let total = 0; let subjects = 0;
-    for(let i=0;i<assignments.length;i++){
-        let a = Number(assignments[i].value); let t = Number(tees[i].value);
-        if(a > 0 || t > 0){ total += (a * 0.30) + (t * 0.70); subjects++; }
-    }
+    let assignments = document.querySelectorAll(".assignmentMarks"); let tees = document.querySelectorAll(".teeMarks"); let total = 0; let subjects = 0;
+    for(let i=0;i<assignments.length;i++){ let a = Number(assignments[i].value); let t = Number(tees[i].value); if(a > 0 || t > 0){ total += (a * 0.30) + (t * 0.70); subjects++; } }
     if(subjects === 0){ document.getElementById("gradeResult").innerHTML = "⚠️ Please enter marks."; return; }
-    let overall = total / subjects;
-    let division = overall >= 75? "Distinction" : overall >= 60? "First Division" : overall >= 50? "Second Division" : "Third Division";
-    document.getElementById("gradeResult").innerHTML =
-    `<b>Overall Percentage:</b> ${overall.toFixed(2)}%<br><br><b>Division:</b> ${division}<br><br><b>Subjects Entered:</b> ${subjects}`;
+    let overall = total / subjects; let division = overall >= 75? "Distinction" : overall >= 60? "First Division" : overall >= 50? "Second Division" : "Third Division";
+    document.getElementById("gradeResult").innerHTML = `<b>Overall Percentage:</b> ${overall.toFixed(2)}%<br><br><b>Division:</b> ${division}<br><br><b>Subjects Entered:</b> ${subjects}`;
 }
-
 function resetTable() {
-    document.getElementById("gradeTable").innerHTML = `
-    <tr><th>Course Code</th><th>Assignment Marks<br><small>Out of 100</small></th><th>TEE Marks<br><small>Out of 100</small></th><th>Subject %</th></tr>`;
-    for(let i=1; i<=12; i++) { createRow(); }
-    document.getElementById("gradeResult").innerHTML = "";
+    document.getElementById("gradeTable").innerHTML = `<tr><th>Course Code</th><th>Assignment Marks<br><small>Out of 100</small></th><th>TEE Marks<br><small>Out of 100</small></th><th>Subject %</th></tr>`;
+    for(let i=1; i<=12; i++) { createRow(); } document.getElementById("gradeResult").innerHTML = "";
 }
-
 function downloadPDF() {
-    calculateGradeCard();
-    const element = document.getElementById("pdfArea");
-    const opt = {
-      margin: 0.5,
-      filename: 'IGNOU-GradeCard.pdf',
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
-    };
+    calculateGradeCard(); const element = document.getElementById("pdfArea"); const opt = { margin: 0.5, filename: 'IGNOU-GradeCard.pdf', image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2 }, jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' } };
     html2pdf().set(opt).from(element).save();
 }
-
-function shareResult() {
-    let result = document.getElementById("gradeResult").innerText;
-    let text = "My IGNOU Percentage Result\n" + result + "\n\nCalculate yours here:\nhttps://ignou-help-zone.github.io/ignouhelps";
-    navigator.clipboard.writeText(text);
-    alert("Result copied! Ab WhatsApp pe paste kar do.");
-}
+function shareResult() { let result = document.getElementById("gradeResult").innerText; let text = "My IGNOU Percentage Result\n" + result + "\n\nCalculate yours here:\nhttps://ignou-help-zone.github.io/ignouhelps"; navigator.clipboard.writeText(text); alert("Result copied! Ab WhatsApp pe paste kar do."); }
 </script>
-
 </body>
-</html>
+</html>   
