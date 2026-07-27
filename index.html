@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>IGNOU Help Portal - Free Grade Card + Percentage Calculator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Free IGNOU Help Portal. Calculate Assignment 30% + TEE 70% for all subjects. Get Important IGNOU Links, Assignment Status, Result & Grade Card.">
+<link rel="stylesheet" href="style.css">
+<style>
+    body {font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f5f5f5;}
+    header {background: #004080; color: white; text-align: center; padding: 20px 10px;}
+    header h1 {margin: 0; font-size: 24px;}
+    header p {margin: 5px 0 0; font-size: 14px;}
+   .container {max-width: 1000px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px;}
+    nav {text-align: center; padding: 10px; background: #e6f0ff;}
+    nav a {margin: 0 10px; text-decoration: none; color: #004080; font-weight: bold;}
+    table {border-collapse: collapse; width: 100%; margin-top: 10px;}
+    th, td {padding: 8px; text-align: center;}
+    input {width: 90px; padding: 5px;}
+    button {padding: 10px 15px; margin: 5px; border: none; background: #004080; color: white; border-radius: 5px; cursor: pointer;}
+    button:hover {background: #0066cc;}
+    footer {background: #222; color: white; text-align: center; padding: 15px; margin-top: 20px; font-size: 12px;}
+    #gradeResult {margin-top: 15px; padding: 15px; background: #e6ffe6; border-left: 4px solid green;}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🎓 IGNOU Help Portal</h1>
+    <p>Assignment + TEE Calculator | Important Links | Student Guide</p>
+</header>
+
+<nav>
+<a href="#calculator">🧮 Calculator</a> |
+<a href="#links">🔗 Important Links</a> |
+<a href="#about">👨‍💻 About</a> |
+<a href="#contact">📞 Contact</a>
+</nav>
+
+<div class="container">
+<h2 id="calculator">📊 Grade Card Calculator</h2>
+<p>Calculate <b>30% Assignment + 70% TEE = Final Percentage</b> for up to 12 subjects easily</p>
+<p><small>Tip: Excel se copy karke seedha table me paste kar sakte ho</small></p>
+
+<table border="1" width="100%" id="gradeTable">
+<tr style="background:#004080; color:white;">
+<th>#</th>
+<th>Course Code</th>
+<th>Assignment Marks<br><small>Out of 100</small></th>
+<th>TEE Marks<br><small>Out of 100</small></th>
+<th>Subject %</th>
+</tr>
+</table>
+
+<br>
+
+<button onclick="addRow()">➕ Add Row</button>
+<button onclick="deleteRow()">➖ Delete Row</button>
+<button onclick="calculateGradeCard()">📊 Calculate Overall</button>
+<button onclick="resetTable()">🔄 Reset</button>
+
+<h3 id="gradeResult"></h3>
+
+<hr>
+
+<h2 id="links">🔗 Important IGNOU Links</h2>
+
+<p><a href="https://ignouadmission.samarth.edu.in/" target="_blank">🎓 Fresh Admission</a></p>
+<p><a href="https://onlinerr.ignou.ac.in/" target="_blank">🔄 Re-Registration</a></p>
+<p><a href="https://www.ignou.ac.in/studentService/download/assignments" target="_blank">📥 Download Assignments</a></p>
+<p><a href="https://isms.ignou.ac.in/changeadmdata/StatusAssignment.asp" target="_blank">📝 Assignment Status</a></p>
+<p><a href="https://termendresult.ignou.ac.in/" target="_blank">📊 IGNOU Result</a></p>
+<p><a href="https://gradecard.ignou.ac.in/" target="_blank">📋 Grade Card</a></p>
+
+<br>
+<button onclick="shareResult()">📤 Share Result on WhatsApp</button>
+
+<hr>
+
+<h2 id="about">👨‍💻 About IGNOU Help Portal</h2>
+<p>Ye website IGNOU students ki help ke liye banayi gayi hai. Isme tum apne Assignment + TEE marks daal kar turant apna percentage aur division nikal sakte ho. Saath me sabhi important IGNOU links bhi yahi mil jayenge.</p>
+<p><b>Developed by:</b> Tanya Shukla & Ambuj Shukla</p>
+
+<hr>
+
+<h2 id="contact">📞 Contact Us</h2>
+<p>Email: <a href="mailto:soorajshukla1996@gmail.com">soorajshukla1996@gmail.com</a></p>
+
+</div>
+
+<footer>
+<p>© 2026 IGNOUHelps.github.io | Made with ❤️ for IGNOU Students</p>
+<p><small>Note: This is an unofficial tool. For official info visit ignou.ac.in</small></p>
+</footer>
+
+<script>
+
+function createRow(num) {
+    let table = document.getElementById("gradeTable");
+    let row = table.insertRow(-1);
+    row.innerHTML = `
+    <td>${num}</td>
+    <td><input type="text" class="course" placeholder="BCS-011"></td>
+    <td><input type="number" class="assignmentMarks" min="0" max="100" oninput="calcRow(this)"></td>
+    <td><input type="number" class="teeMarks" min="0" max="100" oninput="calcRow(this)"></td>
+    <td class="percentageCell">-</td>
+    `;
+    row.addEventListener("paste", handlePaste);
+}
+
+// Default 12 rows on page load
+document.addEventListener("DOMContentLoaded", function() {
+    for(let i=1; i<=12; i++) {
+        createRow(i);
+    }
+});
+
+function addRow() {
+    let table = document.getElementById("gradeTable");
+    createRow(table.rows.length);
+}
+
+function deleteRow() {
+    let table = document.getElementById("gradeTable");
+    if(table.rows.length > 2){
+        table.deleteRow(-1);
+    }
+}
+
+// Subject wise %
+function calcRow(input) {
+    let row = input.parentElement.parentElement;
+    let a = Number(row.querySelector(".assignmentMarks").value);
+    let t = Number(row.querySelector(".teeMarks").value);
+    let per = (a * 0.30) + (t * 0.70);
+    if(a > 0 || t > 0) {
+        row.querySelector(".percentageCell").innerText = per.toFixed(2) + "%";
+    } else {
+        row.querySelector(".percentageCell").innerText = "-";
+    }
+}
+
+// Excel Paste Special
+function handlePaste(e) {
+    e.preventDefault();
+    let pasteData = (e.clipboardData || window.clipboardData).getData('text');
+    let rows = pasteData.split('\n').filter(r => r.trim()!== '');
+
+    let startRow = e.target.closest('tr').rowIndex - 1;
+    let startCol = Array.from(e.target.closest('td').parentNode.children).indexOf(e.target.closest('td'));
+
+    rows.forEach((rowData, rowIndex) => {
+        let cells = rowData.split('\t');
+        let currentRowIndex = startRow + rowIndex;
+
+        let table = document.getElementById("gradeTable");
+        if(currentRowIndex >= table.rows.length - 1) {
+            createRow(table.rows.length);
+        }
+
+        let currentRow = table.rows[currentRowIndex + 1];
+
+        cells.forEach((cellData, colIndex) => {
+            let currentColIndex = startCol + colIndex;
+            if(currentRow && currentRow.cells[currentColIndex]) {
+                let input = currentRow.cells[currentColIndex].querySelector('input');
+                if(input) {
+                    input.value = cellData.trim();
+                    input.dispatchEvent(new Event('input'));
+                }
+            }
+        });
+    });
+}
+
+function calculateGradeCard() {
+    let assignments = document.querySelectorAll(".assignmentMarks");
+    let tees = document.querySelectorAll(".teeMarks");
+    let total = 0;
+    let subjects = 0;
+
+    for(let i=0;i<assignments.length;i++){
+        let a = Number(assignments[i].value);
+        let t = Number(tees[i].value);
+        if(a > 0 || t > 0){
+            total += (a * 0.30) + (t * 0.70);
+            subjects++;
+        }
+    }
+
+    if(subjects === 0){
+        document.getElementById("gradeResult").innerHTML = "⚠️ Please enter marks.";
+        return;
+    }
+
+    let overall = total / subjects;
+    let division = overall >= 75? "Distinction" : overall >= 60? "First Division" : overall >= 50? "Second Division" : "Third Division";
+
+    document.getElementById("gradeResult").innerHTML =
+    "<b>Overall Percentage:</b> " + overall.toFixed(2) + "%<br><br>" +
+    "<b>Division:</b> " + division + "<br><br>" +
+    "<b>Subjects Entered:</b> " + subjects;
+}
+
+function resetTable() {
+    document.getElementById("gradeTable").innerHTML = `
+    <tr style="background:#004080; color:white;">
+    <th>#</th>
+    <th>Course Code</th>
+    <th>Assignment Marks<br><small>Out of 100</small></th>
+    <th>TEE Marks<br><small>Out of 100</small></th>
+    <th>Subject %</th>
+    </tr>`;
+    for(let i=1; i<=12; i++) { createRow(i); }
+    document.getElementById("gradeResult").innerHTML = "";
+}
+
+function shareResult() {
+    let result = document.getElementById("gradeResult").innerText;
+    let text = "My IGNOU Percentage Result\n" + result + "\n\nCalculate yours here:\nhttps://ignouhelps.github.io";
+    if (navigator.share) {
+        navigator.share({title: "IGNOU Percentage Result", text: text});
+    } else {
+        alert(text);
+    }
+}
+
+</script>
+
+</body>
+</html>
