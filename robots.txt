@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ignou-help-zone.github.io/Ignouhelp/sitemap.xml
