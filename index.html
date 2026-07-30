@@ -9,29 +9,28 @@
 <link rel="icon" href="https://upload.wikimedia.org/wikipedia/en/thumb/1/15/IGNOU_logo.svg/1200px-IGNOU_logo.svg.png" type="image/png">
 
 <style>
-    body {font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background: #f5f5f5;}
+    body {font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background: #f5f5f5; transition: 0.3s;}
     header {background: #004080; color: white; text-align: center; padding: 15px 10px;}
-  .logo {display: flex; align-items: center; justify-content: center; gap: 10px;}
+.logo {display: flex; align-items: center; justify-content: center; gap: 10px;}
     header img {width: 50px; height: 50px; background: white; border-radius: 50%; padding: 5px;}
     header h1 {margin: 0; font-size: 24px;}
     header p {margin: 5px 0 0; font-size: 14px;}
-  .container {max-width: 1100px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
-    nav {text-align: center; padding: 10px; background: #e6f0ff; position: sticky; top: 0; z-index: 10;}
+.container {max-width: 1100px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: 0.3s;}
+    nav {text-align: center; padding: 10px; background: #e6f0ff; position: sticky; top: 0; z-index: 10; transition: 0.3s;}
     nav a {margin: 0 10px; text-decoration: none; color: #004080; font-weight: bold;}
     nav a:hover {text-decoration: underline;}
 
-   /* PRO TABLE STYLE - CALCULATOR WALA */
- .table-container {overflow-x: auto; border: 1px solid #ddd; border-radius: 8px; margin-top: 10px;}
-    table {border-collapse: collapse; width: 100%; min-width: 600px; background: white;}
+.table-container {overflow-x: auto; border: 1px solid #ddd; border-radius: 8px; margin-top: 10px;}
+    table {border-collapse: collapse; width: 100%; min-width: 600px; background: white; transition: 0.3s;}
     th {background: linear-gradient(180deg, #004080, #003366); color: white; padding: 14px 8px; font-size: 14px; border: 1px solid #003366; text-align: center;}
     td {padding: 10px 8px; text-align: center; border: 1px solid #e0e0e0;}
     tr:nth-child(even) {background: #f9f9f9;}
     tr:hover {background: #e6f0ff;}
-    input {width: 90px; padding: 8px; max-width: 100%; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; text-align: center; font-size: 14px;}
+    input {width: 90px; padding: 8px; max-width: 100%; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; text-align: center; font-size: 14px; transition: 0.3s;}
     input:focus {border-color: #004080; outline: none; box-shadow: 0 0 3px #004080;}
-   .percentageCell {font-weight: bold; color: #004080; font-size: 15px;}
+.percentageCell {font-weight: bold; color: #004080; font-size: 15px;}
 
-   .btn-group {text-align: center; margin: 20px 0;}
+.btn-group {text-align: center; margin: 20px 0;}
     button {padding: 10px 18px; margin: 5px; border: none; background: #004080; color: white; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 14px; transition: 0.2s;}
     button:hover {background: #0066cc; transform: translateY(-1px);}
     button.green {background: #28a745;} button.green:hover {background: #218838;}
@@ -39,24 +38,50 @@
     button.purple {background: #6f42c1;} button.purple:hover {background: #5a32a3;}
     button:disabled {background: #ccc; cursor: not-allowed; transform: none;}
 
-    footer {background: #222; color: white; text-align: center; padding: 15px; margin-top: 20px; font-size: 12px;}
-    #gradeResult {margin-top: 15px; padding: 15px; background: #e6ffe6; border-left: 4px solid #28a745; border-radius: 5px; display: none; font-size: 16px;}
-  .assignment-box {text-align: center; padding: 20px; border: 2px dashed #004080; border-radius: 8px; background: #f0f8ff; margin-bottom: 20px;}
-  .assignment-box a {display: inline-block; margin: 10px; padding: 12px 20px; background: #004080; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;}
-  .assignment-box a:hover {background: #0066cc;}
-  .solved-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-top: 15px;}
-  .solved-card {border: 1px solid #ddd; padding: 15px; border-radius: 8px; background: #fff8e6; text-align: left;}
-  .solved-card h4 {margin: 0 0 10px; color: #ff6600;}
-  .solved-card a {display: block; margin: 5px 0; color: #004080; text-decoration: none;}
-  .solved-card a:hover {text-decoration: underline;}
+    footer {background: #222; color: white; text-align: center; padding: 15px; margin-top: 20px; font-size: 12px; transition: 0.3s;}
+    #gradeResult {margin-top: 15px; padding: 15px; background: #e6ffe6; border-left: 4px solid #28a745; border-radius: 5px; display: none; font-size: 16px; transition: 0.3s;}
+.assignment-box {text-align: center; padding: 20px; border: 2px dashed #004080; border-radius: 8px; background: #f0f8ff; margin-bottom: 20px; transition: 0.3s;}
+.assignment-box a {display: inline-block; margin: 10px; padding: 12px 20px; background: #004080; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;}
+.assignment-box a:hover {background: #0066cc;}
+.solved-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-top: 15px;}
+.solved-card {border: 1px solid #ddd; padding: 15px; border-radius: 8px; background: #fff8e6; text-align: left; transition: 0.3s;}
+.solved-card h4 {margin: 0 0 10px; color: #ff6600;}
+.solved-card a {display: block; margin: 5px 0; color: #004080; text-decoration: none;}
+.solved-card a:hover {text-decoration: underline;}
+
+ /* NEW: BANNER + DARK MODE */
+.banner {background: #ffdddd; color: #b30000; padding: 12px; text-align: center; font-weight: bold; border-bottom: 2px solid #b30000; font-size: 15px;}
+.dark-toggle {position: fixed; top: 15px; right: 15px; z-index: 100; background: #004080; color: white; border: none; padding: 8px 12px; border-radius: 50%; font-size: 20px; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.2);}
+.dark-toggle:hover {background: #0066cc;}
+
+ body.dark {background: #121212; color: #e0e0e0;}
+ body.dark.container {background: #1e1e1e; color: #e0e0e0; box-shadow: 0 2px 5px rgba(255,255,255,0.05);}
+ body.dark nav {background: #2a2a2a;}
+ body.dark nav a {color: #90caf9;}
+ body.dark table {background: #1e1e1e;}
+ body.dark th {background: linear-gradient(180deg, #333, #222);}
+ body.dark tr:nth-child(even) {background: #2a2a2a;}
+ body.dark tr:hover {background: #333;}
+ body.dark input {background: #333; color: white; border: 1px solid #555;}
+ body.dark.assignment-box {background: #2a2a2a; border-color: #90caf9;}
+ body.dark.solved-card {background: #2a2a2a; border-color: #555;}
+ body.dark #gradeResult {background: #1b5e20; border-color: #4caf50; color: white;}
+ body.dark footer {background: #000;}
+
     @media (max-width: 768px) {
       input {width: 70px;} th, td {font-size: 12px; padding: 6px;} header h1 {font-size: 20px;}
+    .dark-toggle {top: 10px; right: 10px; font-size: 18px; padding: 6px 10px;}
     }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 
 <body>
+<!-- DARK MODE BUTTON -->
+<button class="dark-toggle" onclick="toggleDark()">🌙</button>
+
+<!-- LAST DATE BANNER -->
+<div class="banner">⚠️ IGNOU TEE Exam Form Last Date: 31 August 2026 | Assignment Submission: 15 September 2026</div>
 
 <header>
     <div class="logo">
@@ -73,7 +98,7 @@
 <a href="assignment.html">📚 Assignments</a> |
 <a href="calculator.html">🧮 Calculator</a> |
 <a href="result.html">📊 Result</a> |
-<a href="examform.html">📝 Exam Form</a> <!-- NAYA TAB -->
+<a href="examform.html">📝 Exam Form</a>
 </nav>
 
 <div class="container">
@@ -155,10 +180,8 @@
 <p>IGNOU Help Zone 2026 ek free platform hai jaha IGNOU students ko Assignment, Calculator, Result aur Exam Form ki sari jankari ek jagah milti hai.</p>
 <p>Humara mission: Har IGNOU student ko help karna h bina kisi fees ke.</p>
 <p><b>Developed by:</b> Tanya Shukla & Ambuj Shukla</p>
-<p><b>Contact:</b> ignouhelpzone@gmail.com
-soorajshukla1996@gmail.com</p>
+<p><b>Contact:</b> ignouhelpzone@gmail.com<br>soorajshukla1996@gmail.com</p>
 </div>
-
 
 <footer>
 <p>© 2026 IGNOU Help Portal | Made with ❤️ for IGNOU Students</p>
@@ -169,9 +192,14 @@ soorajshukla1996@gmail.com</p>
 let calculatedOverall = 0;
 let hasData = false;
 
-// Default 12 rows
 document.addEventListener("DOMContentLoaded", function() {
     for(let i=1; i<=12; i++) { createRow(); }
+
+    // Load Dark Mode Preference
+    if(localStorage.getItem("darkMode") === "true") {
+        document.body.classList.add("dark");
+        document.querySelector(".dark-toggle").innerText = "☀️";
+    }
 });
 
 function createRow() {
@@ -288,6 +316,14 @@ function shareResult() {
     let text = `My IGNOU Percentage: ${calculatedOverall.toFixed(2)}%\n` + result + `\n\nCalculate yours here:\nhttps://ignou-help-zone.github.io/Ignouhelp/calculator.html`;
     let whatsappUrl = `https://wa.me/?text=${encodeURIComponent(text)}`;
     window.open(whatsappUrl, '_blank');
+}
+
+// DARK MODE FUNCTION
+function toggleDark() {
+    document.body.classList.toggle("dark");
+    let btn = document.querySelector(".dark-toggle");
+    btn.innerText = document.body.classList.contains("dark")? "☀️" : "🌙";
+    localStorage.setItem("darkMode", document.body.classList.contains("dark"));
 }
 </script>
 </body>
