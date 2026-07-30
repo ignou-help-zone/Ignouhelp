@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>IGNOU Grade Card Calculator 2026 | PDF Download + Share</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Calculate IGNOU Final Percentage 30% Assignment + 70% TEE. Add/Delete rows. Download PDF, Print and Share Result.">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<style>
+    body {font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background: #f5f5f5;}
+    header {background: #004080; color: white; text-align: center; padding: 15px 10px;}
+ .logo {display: flex; align-items: center; justify-content: center; gap: 10px;}
+    header img {width: 50px; height: 50px; background: white; border-radius: 50%; padding: 5px;}
+    header h1 {margin: 0; font-size: 22px;}
+ .container {max-width: 1100px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
+    nav {text-align: center; padding: 10px; background: #e6f0ff; position: sticky; top: 0; z-index: 10;}
+    nav a {margin: 0 10px; text-decoration: none; color: #004080; font-weight: bold;}
+    nav a:hover {text-decoration: underline;}
+
+  /* TABLE KO PRO BANA DIYA */
+ .table-container {overflow-x: auto; border: 1px solid #ddd; border-radius: 8px; margin-top: 10px;}
+    table {border-collapse: collapse; width: 100%; min-width: 600px; background: white;}
+    th {background: linear-gradient(180deg, #004080, #003366); color: white; padding: 14px 8px; font-size: 14px; border: 1px solid #003366; text-align: center;}
+    td {padding: 10px 8px; text-align: center; border: 1px solid #e0e0e0;}
+    tr:nth-child(even) {background: #f9f9f9;} /* Zebra strip */
+    tr:hover {background: #e6f0ff;} /* Hover effect */
+    input {width: 90px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; text-align: center; font-size: 14px;}
+    input:focus {border-color: #004080; outline: none; box-shadow: 0 0 3px #004080;}
+   .percentageCell {font-weight: bold; color: #004080; font-size: 15px;}
+
+ .btn-group {text-align: center; margin: 20px 0;}
+    button {padding: 10px 18px; margin: 5px; border: none; background: #004080; color: white; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 14px; transition: 0.2s;}
+    button:hover {background: #0066cc; transform: translateY(-1px);}
+    button.green {background: #28a745;} button.green:hover {background: #218838;}
+    button.orange {background: #ff6600;} button.orange:hover {background: #e65c00;}
+    button.purple {background: #6f42c1;} button.purple:hover {background: #5a32a3;}
+    button:disabled {background: #ccc; cursor: not-allowed; transform: none;}
+
+   #gradeResult {margin-top: 15px; padding: 15px; background: #e6ffe6; border-left: 4px solid #28a745; border-radius: 5px; display: none; font-size: 16px;}
+   #pdfArea {padding: 20px;}
+    footer {background: #222; color: white; text-align: center; padding: 15px; margin-top: 20px; font-size: 12px;}
+
+    /* NAYA: Paste hint */
+   .paste-note {text-align: center; font-size: 12px; color: #666; margin-top: 5px;}
+</style>
+
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/15/IGNOU_logo.svg/1200px-IGNOU_logo.svg.png" alt="IGNOU Logo">
+        <div><h1>🎓 IGNOU Grade Card Calculator</h1></div>
+    </div>
+</header>
+
+<nav>
+<a href="index.html">🏠 Home</a> |
+<a href="assignment.html">📚 Assignments</a> |
+<a href="calculator.html">🧮 Calculator</a> |
+<a href="result.html">📊 Result</a> |
+<a href="examform.html">📝 Exam Form</a>
+</nav>
+
+<div class="container">
+<h2>📊 Calculate Your IGNOU Percentage</h2>
+<p><b>Formula: 30% Assignment + 70% TEE</b></p>
+<p class="paste-note">💡 Tip: Excel/Sheets se copy karke direct table me paste karo. Auto fill ho jayega</p>
+
+<div class="table-container">
+<table id="gradeTable">
+<tr>
+    <th>Course Code</th>
+    <th>Assignment Marks<br><small>Out of 100</small></th>
+    <th>TEE Marks<br><small>Out of 100</small></th>
+    <th>Subject %</th>
+</tr>
+</table>
+</div>
+
+<div class="btn-group">
+    <button onclick="addRow()">➕ Add Row</button>
+    <button onclick="deleteRow()">➖ Delete Row</button>
+    <button onclick="calculateGradeCard()">📊 Calculate Overall</button>
+    <button onclick="resetTable()">🔄 Reset</button>
+</div>
+
+<div id="pdfArea">
+    <h3 id="gradeResult"></h3>
+</div>
+
+<div class="btn-group">
+    <button class="green" id="downloadBtn" onclick="downloadPDF()" disabled>📄 Download PDF</button>
+    <button class="purple" id="printBtn" onclick="printResult()" disabled>🖨️ Print</button>
+    <button class="orange" id="shareBtn" onclick="shareResult()" disabled>📤 Share Result</button>
+</div>
+
+</div>
+
+<footer>
+<p>© 2026 IGNOU Help Portal | Made with ❤️ for IGNOU Students</p>
+</footer>
+
+<script>
+let calculatedOverall = 0;
+let hasData = false;
+
+// Default 12 rows banane ke liye
+document.addEventListener("DOMContentLoaded", function() {
+    for(let i=1; i<=12; i++) {
+        createRow();
+    }
+    enablePasteSpecial(); // PASTE SPECIAL ON
+});
+
+function createRow() {
+    let table = document.getElementById("gradeTable");
+    let row = table.insertRow(-1);
+    row.innerHTML = `<td><input type="text" class="course" placeholder="BCS-011"></td>
+    <td><input type="number" class="assignmentMarks" min="0" max="100" oninput="calcRow(this)"></td>
+    <td><input type="number" class="teeMarks" min="0" max="100" oninput="calcRow(this)"></td>
+    <td class="percentageCell">-</td>`;
+}
+
+function addRow() { createRow(); }
+function deleteRow() {
+    let table = document.getElementById("gradeTable");
+    if(table.rows.length > 2){ table.deleteRow(-1); }
+    checkData();
+}
+
+function calcRow(input) {
+    let row = input.parentElement.parentElement;
+    let a = Number(row.querySelector(".assignmentMarks").value);
+    let t = Number(row.querySelector(".teeMarks").value);
+    let per = (a * 0.30) + (t * 0.70);
+    row.querySelector(".percentageCell").innerText = (a > 0 || t > 0)? per.toFixed(2) + "%" : "-";
+    checkData();
+}
+
+function checkData() {
+    let assignments = document.querySelectorAll(".assignmentMarks");
+    let tees = document.querySelectorAll(".teeMarks");
+    hasData = false;
+    for(let i=0;i<assignments.length;i++){
+        if(Number(assignments[i].value) > 0 || Number(tees[i].value) > 0){
+            hasData = true; break;
+        }
+    }
+    document.getElementById("downloadBtn").disabled =!hasData || calculatedOverall === 0;
+    document.getElementById("printBtn").disabled =!hasData || calculatedOverall === 0;
+    document.getElementById("shareBtn").disabled =!hasData || calculatedOverall === 0;
+}
+
+function calculateGradeCard() {
+    let assignments = document.querySelectorAll(".assignmentMarks");
+    let tees = document.querySelectorAll(".teeMarks");
+    let total = 0;
+    let subjects = 0;
+
+    for(let i=0;i<assignments.length;i++){
+        let a = Number(assignments[i].value);
+        let t = Number(tees[i].value);
+        if(a > 0 || t > 0){
+            total += (a * 0.30) + (t * 0.70);
+            subjects++;
+        }
+    }
+
+    if(subjects === 0){
+        alert("⚠️ Please enter marks for at least one subject.");
+        document.getElementById("gradeResult").style.display = "none";
+        calculatedOverall = 0;
+        checkData();
+        return;
+    }
+
+    calculatedOverall = total / subjects;
+    let division = calculatedOverall >= 75? "Distinction" : calculatedOverall >= 60? "First Division" : calculatedOverall >= 50? "Second Division" : "Third Division";
+
+    document.getElementById("gradeResult").innerHTML = `<b>IGNOU Grade Card Result</b><br><br>
+    <b>Overall Percentage:</b> ${calculatedOverall.toFixed(2)}%<br>
+    <b>Division:</b> ${division}<br>
+    <b>Total Subjects:</b> ${subjects}`;
+    document.getElementById("gradeResult").style.display = "block";
+    checkData();
+}
+
+function resetTable() {
+    calculatedOverall = 0;
+    document.getElementById("gradeTable").innerHTML = `<tr><th>Course Code</th><th>Assignment Marks<br><small>Out of 100</small></th><th>TEE Marks<br><small>Out of 100</small></th><th>Subject %</th></tr>`;
+    for(let i=1; i<=12; i++) { createRow(); }
+    document.getElementById("gradeResult").innerHTML = "";
+    document.getElementById("gradeResult").style.display = "none";
+    checkData();
+}
+
+function downloadPDF() {
+    if(!hasData || calculatedOverall === 0){alert("⚠️ Please Calculate Your Percentage First"); return;}
+    const element = document.getElementById("pdfArea");
+    const opt = {
+        margin: 0.5,
+        filename: `IGNOU-GradeCard-${calculatedOverall.toFixed(2)}%.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+    };
+    html2pdf().set(opt).from(element).save();
+}
+
+function printResult() {
+    if(!hasData || calculatedOverall === 0){alert("⚠️ Please Calculate Your Percentage First"); return;}
+    let printContents = document.getElementById("pdfArea").innerHTML;
+    let win = window.open('', '', 'height=700,width=900');
+    win.document.write('<html><head><title>IGNOU Result</title>');
+    win.document.write('<style>body{font-family:Arial; padding:20px;} h3{background:#e6ffe6; padding:15px; border-left:4px solid green;}</style>');
+    win.document.write('</head><body>');
+    win.document.write(printContents);
+    win.document.write('</body></html>');
+    win.document.close();
+    win.print();
+}
+
+function shareResult() {
+    if(!hasData || calculatedOverall === 0){alert("⚠️ Please Calculate Your Percentage First"); return;}
+    let result = document.getElementById("gradeResult").innerText;
+    let text = `My IGNOU Percentage: ${calculatedOverall.toFixed(2)}%\n` + result + `\n\nCalculate yours here:\nhttps://ignou-help-zone.github.io/Ignouhelp/calculator.html`;
+    let whatsappUrl = `https://wa.me/?text=${encodeURIComponent(text)}`;
+    window.open(whatsappUrl, '_blank');
+}
+
+// ====== PASTE SPECIAL CODE START ======
+function enablePasteSpecial() {
+    document.getElementById("gradeTable").addEventListener("paste", function(e) {
+        e.preventDefault();
+
+        const clipboardData = e.clipboardData || window.clipboardData;
+        const pastedData = clipboardData.getData('text');
+
+        const targetInput = e.target;
+        const targetRow = targetInput.closest("tr");
+        const targetCellIndex = Array.from(targetRow.cells).indexOf(targetInput.closest("td"));
+
+        const rows = pastedData.split(/\r\n|\n/).filter(r => r.trim()!== "");
+
+        rows.forEach((rowData, rowIndex) => {
+            const columns = rowData.split('\t');
+
+            // Agar row exist nahi karti to nayi row bana do
+            let currentRow = document.getElementById("gradeTable").rows[targetRow.rowIndex + rowIndex];
+            if(!currentRow){
+                createRow();
+                currentRow = document.getElementById("gradeTable").rows[targetRow.rowIndex + rowIndex];
+            }
+
+            columns.forEach((colData, colIndex) => {
+                const currentCell = currentRow.cells[targetCellIndex + colIndex];
+                if(currentCell){
+                    const input = currentCell.querySelector("input");
+                    if(input){
+                        input.value = colData.trim();
+                        input.dispatchEvent(new Event('input')); // calcRow trigger hoga
+                    }
+                }
+            });
+        });
+        checkData();
+    });
+}
+// ====== PASTE SPECIAL CODE END ======
+</script>
+</body>
+</html>
